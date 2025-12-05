@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Притягнення до горизонту</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: #000 !important;
+  color: #FFF !important;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  margin: 0;
+  overflow-y: auto;
+  -webkit-text-size-adjust: 100%;
+  background-color: #000 !important;
+}
+
+.card {
+  width: 100%;
+  max-width: 980px;
+  padding: 0;
+  background: transparent !important;
+  border-radius: 0;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+h1 {
+  font-size: 22px;
+  color: #FFF !important;
+  letter-spacing: 0.01em;
+  text-align: left;
+  word-break: break-word;
+  line-height: 1.4;
+  white-space: pre-line;
+  flex: 1;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+button {
+  background: #555;
+  border: none;
+  color: #FFF;
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  position: relative;
+}
+
+button:active {
+  background: #777;
+}
+
+button svg {
+  width: 28px;
+  height: 28px;
+}
+
+.image-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.para {
+  background: transparent !important;
+  padding: 0;
+  border-radius: 0;
+  margin-bottom: 15px;
+  min-height: 50px;
+  overflow: visible;
+}
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.word {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background: transparent !important;
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+  user-select: none;
+  color: #FFF !important;
+  font-size: 18px;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.dim {
+  opacity: 0.3;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  .header {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  h1 {
+    font-size: 18px;
+  }
+  .word {
+    font-size: 16px;
+    padding: 4px 6px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="card" role="main">
+  <div class="header">
+    <h1>Блок 2.
+ПРИТЯГНЕННЯ ДО ГОРИЗОНТУ, 2016, 160 × 180 см,
+12 робіт (розмір кожної роботи 40 × 60 см), антиживопис.</h1>
+    <div class="button-group">
+      <button id="muteBtn" aria-label="Звук" style="background: #333;">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20 6 C 22 6 25 8 26 12 C 27 16 26 20 24 23 C 23 24 22 25 20 25" 
+                stroke="#FFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M 20 10 C 21 10 22 11 22.5 13 C 23 15 22.5 17 21 18.5" 
+                stroke="#FFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M 19 24 C 18 25 17 25.5 16 25" 
+                stroke="#FFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
+      <button id="freezeBtn" aria-label="Заморозити">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="16" y1="4" x2="16" y2="28" stroke="#FFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4" y1="16" x2="28" y2="16" stroke="#FFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="7" y1="7" x2="25" y2="25" stroke="#FFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="25" y1="7" x2="7" y2="25" stroke="#FFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="4" x2="13" y2="7" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="4" x2="19" y2="7" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="28" x2="13" y2="25" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="28" x2="19" y2="25" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="16" x2="7" y2="13" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="16" x2="7" y2="19" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="28" y1="16" x2="25" y2="13" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="28" y1="16" x2="25" y2="19" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="7" x2="9" y2="5" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="7" x2="5" y2="9" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="7" x2="23" y2="5" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="7" x2="27" y2="9" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="25" x2="5" y2="23" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="25" x2="9" y2="27" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="25" x2="27" y2="23" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="25" x2="23" y2="27" stroke="#FFFF" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="image-container">
+    <img src="fragment horrizont.png" alt="Притягнення до горизонту">
+  </div>
+
+  <div class="para"><div class="line" id="p1"></div></div>
+  <div class="para"><div class="line" id="p2"></div></div>
+  <div class="para"><div class="line" id="p3"></div></div>
+</div>
+
+<script>
+console.log('Script started');
+
+const texts = [
+"Притягнення до горизонту — це друга фаза проєкту «Глобальна адаптація», в якій людина стикається не з внутрішньою редукцією, а з зовнішнім вектором, що м'яко, але наполегливо витягує її за межі набутого досвіду. На відміну від «Механіки обнулення», яка фіксує момент знецінення індивідуального «я», цей блок реєструє стан постійного тяжіння до невиразної лінії попереду — до того самого горизонту, де обіцянка розширення збігається із загрозою остаточної втрати опори. Тут суб'єкт уже не просто обробляється системою, він починає сам прагнути до точки, з якої не видно шляху назад.",
+"Візуальна мова блоку вибудовується як серія псевдонавігаційних схем, умовних карт і парадигмальних «маршрутів», де кожен фрагмент працює як фрагмент інструкції з руху в бік недосяжного. Форми нагадують навчальні плакати й технічні креслення, але замість конкретних координат дають глядачеві лише натяки на траєкторії, які ніколи не замикаються. Таким чином, «Притягнення до горизонту» показує не кінцеву мету, а нескінченний процес вирівнювання людського погляду по лінії глобального сценарію — сценарію, в якому горизонт завжди трохи далі, ніж точка теперішнього вибору.",
+"Митець розглядає цей блок як критичний експеримент над самим поняттям надії: тут надія позбавлена змістового ядра й перетворюється на чисту функцію притягнення. Людина, що рухається до горизонту, вже приймає задану конфігурацію простору й погоджується з її правилами, навіть тоді, коли вони фактично виключають її присутність. «Притягнення до горизонту» попереджає про момент, коли суб'єкт, виснажений опором тиску майбутнього, добровільно вбудовується в його рельєф — і зі свідка процесів глобалізації сам перетворюється на будівельний інструмент, що працює на межі між видимим і ще ненасталим."
+];
+
+let textFrozen = false;
+let originalOrder = {};
+
+function setup(){
+  console.log('Setup function called');
+  ['p1','p2','p3'].forEach((id, idx)=>{
+    const cont = document.getElementById(id);
+    if (!cont) {
+      console.error('Container not found:', id);
+      return;
+    }
+    cont.innerHTML = '';
+    const words = texts[idx].split(/\s+/).filter(Boolean);
+    originalOrder[id] = words.slice();
+    console.log('Words for', id, ':', words.length);
+    words.forEach((w)=>{
+      const sp = document.createElement('span');
+      sp.className = 'word';
+      sp.textContent = w;
+      cont.appendChild(sp);
+    });
+  });
+  console.log('Setup complete');
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setup);
+} else {
+  setup();
+}
+
+function restoreText(){
+  ['p1','p2','p3'].forEach((id)=>{
+    const cont = document.getElementById(id);
+    if (!cont) return;
+    cont.innerHTML = '';
+    const words = originalOrder[id];
+    words.forEach((w)=>{
+      const sp = document.createElement('span');
+      sp.className = 'word';
+      sp.textContent = w;
+      cont.appendChild(sp);
+    });
+  });
+}
+
+function shuffleOnce(){
+  if (textFrozen) return;
+  
+  document.querySelectorAll('.line').forEach(line=>{
+    const spans = Array.from(line.children);
+    if (spans.length < 2) return;
+    const swaps = Math.max(1, Math.floor(spans.length * 0.06));
+    for (let s = 0; s < swaps; s++){
+      const i = Math.floor(Math.random() * spans.length);
+      const j = Math.floor(Math.random() * spans.length);
+      if (i === j) continue;
+      const a = spans[i], b = spans[j];
+      a.style.transform = 'scale(1.05)';
+      b.style.transform = 'scale(1.05)';
+      setTimeout(()=>{
+        try {
+          a.parentNode.insertBefore(b, a);
+        } catch(e) {}
+        a.style.transform = '';
+        b.style.transform = '';
+      }, 200);
+    }
+    spans.forEach(sp=>{
+      if (Math.random() < 0.07) sp.classList.toggle('dim');
+      else sp.classList.remove('dim');
+    });
+  });
+}
+
+// АУДИО: ШАГИ 150 → 130 Гц
+let audioCtx = null;
+let masterGain = null;
+let kickDrum = { running: false, mute: true };
+
+function initAudio() {
+  console.log('initAudio called, audioCtx:', audioCtx);
+  if (audioCtx) return;
+  
+  try {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    console.log('AudioContext created, state:', audioCtx.state);
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = kickDrum.mute ? 0 : 0.8;
+    masterGain.connect(audioCtx.destination);
+
+    kickDrum.running = true;
+    
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume().then(() => {
+        console.log('AudioContext resumed');
+        scheduleKicks();
+      });
+    } else {
+      console.log('Starting scheduleKicks immediately');
+      scheduleKicks();
+    }
+  } catch (e) {
+    console.error('AudioContext init failed:', e);
+    kickDrum.running = false;
+    document.getElementById('muteBtn').style.display = 'none';
+  }
+}
+
+// Один удар шага: частота 150 → 130 Гц
+function makeSingleKick(startTime, gainMultiplier = 1.0) {
+  if (!audioCtx || !kickDrum.running) return;
+  
+  const osc = audioCtx.createOscillator();
+  osc.type = 'sine';
+  const oscGain = audioCtx.createGain();
+  
+  osc.frequency.setValueAtTime(150, startTime);
+  osc.frequency.exponentialRampToValueAtTime(130, startTime + 0.25);
+  
+  oscGain.gain.setValueAtTime(0, startTime);
+  oscGain.gain.linearRampToValueAtTime(1.0 * gainMultiplier, startTime + 0.03);
+  oscGain.gain.linearRampToValueAtTime(0.6 * gainMultiplier, startTime + 0.4);
+  oscGain.gain.exponentialRampToValueAtTime(0.001, startTime + 2.0);
+  
+  osc.connect(oscGain);
+  
+  const convolver = audioCtx.createConvolver();
+  const reverbLength = audioCtx.sampleRate * 1.2;
+  const reverbBuffer = audioCtx.createBuffer(2, reverbLength, audioCtx.sampleRate);
+  
+  for (let channel = 0; channel < 2; channel++) {
+    const channelData = reverbBuffer.getChannelData(channel);
+    for (let i = 0; i < reverbLength; i++) {
+      channelData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 0.6));
+    }
+  }
+  convolver.buffer = reverbBuffer;
+  
+  const reverbGain = audioCtx.createGain();
+  reverbGain.gain.value = 0.2;
+  
+  oscGain.connect(convolver);
+  convolver.connect(reverbGain);
+  reverbGain.connect(masterGain);
+  
+  oscGain.connect(masterGain);
+  
+  osc.start(startTime);
+  osc.stop(startTime + 2.0);
+}
+
+function makeDoubleKick(startTime) {
+  if (!audioCtx || !kickDrum.running) return;
+  
+  makeSingleKick(startTime, 1.0);
+  makeSingleKick(startTime + 0.08, 0.8);
+}
+
+function scheduleKicks() {
+  if (!kickDrum.running || kickDrum.mute) return;
+  console.log('scheduleKicks called');
+  
+  const now = audioCtx.currentTime;
+  const kickInterval = 2.0;
+  const initialDelay = 3.0;
+  
+  for (let i = 0; i < 20; i++) {
+    makeDoubleKick(now + initialDelay + kickInterval * i);
+  }
+  
+  setTimeout(scheduleKicks, (initialDelay + kickInterval * 19) * 1000);
+}
+
+const muteBtn = document.getElementById('muteBtn');
+
+muteBtn.onclick = () => {
+  console.log('Mute button clicked');
+  if (!audioCtx) {
+    initAudio();
+  } else {
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+  }
+
+  kickDrum.mute = !kickDrum.mute;
+  
+  const now = audioCtx.currentTime;
+  masterGain.gain.cancelScheduledValues(now);
+  masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+  masterGain.gain.linearRampToValueAtTime(kickDrum.mute ? 0 : 0.8, now + 0.3);
+  
+  muteBtn.style.background = kickDrum.mute ? '#333' : '#555';
+
+  if (!kickDrum.mute && kickDrum.running) {
+    scheduleKicks();
+  }
+};
+
+const freezeBtn = document.getElementById('freezeBtn');
+
+freezeBtn.onclick = () => {
+  if (textFrozen) return;
+  
+  textFrozen = true;
+  freezeBtn.style.background = '#777';
+  
+  restoreText();
+  
+  const freezeDuration = 2000 + Math.random() * 1000;
+  
+  setTimeout(() => {
+    textFrozen = false;
+    freezeBtn.style.background = '#555';
+  }, freezeDuration);
+};
+
+// ТЕКСТОВА АНІМАЦІЯ
+(function startTextLoop(){
+  function step() {
+    const baseDelay = 4400;
+    if (!textFrozen) shuffleOnce();
+    setTimeout(step, baseDelay);
+  }
+  step();
+})();
+
+console.log('Script loaded completely');
+</script>
+</body>
+</html>
